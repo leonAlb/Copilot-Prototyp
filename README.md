@@ -41,7 +41,8 @@ Lectures are written in Markdown with a custom DSL using HTML comment tags:
 lehrvideo: true
 ...
 ---
-<!-- slide scene name="Introduction" -->
+<!-- scene name="Introduction" -->
+<!-- slide -->
 # Introduction
 Slide content here...
 
