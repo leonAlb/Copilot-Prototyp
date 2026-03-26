@@ -1,0 +1,112 @@
+/* Prevents the Sidebar in VS Code to have a Scrollbar */
+html,
+body {
+  overflow: hidden;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Typing indicator animation */
+@keyframes blink {
+  0%, 20% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.typing-dot {
+  animation: blink 1.4s infinite;
+  animation-fill-mode: both;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* Markdown content styling */
+.markdown-content {
+  line-height: 1.5;
+}
+
+.markdown-content p {
+  margin: 0.5em 0;
+}
+
+.markdown-content code {
+  background-color: var(--vscode-textCodeBlock-background, rgba(128, 128, 128, 0.2));
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  font-family: var(--vscode-editor-font-family, monospace);
+  font-size: 0.9em;
+}
+
+.markdown-content pre {
+  background-color: var(--vscode-textCodeBlock-background, rgba(128, 128, 128, 0.2));
+  padding: 0.75em;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 0.5em 0;
+}
+
+.markdown-content pre code {
+  background: none;
+  padding: 0;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  margin: 0.5em 0;
+  padding-left: 1.5em;
+}
+
+.markdown-content li {
+  margin: 0.25em 0;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4 {
+  margin: 0.75em 0 0.5em 0;
+  font-weight: bold;
+}
+
+.markdown-content h1 {
+  font-size: 1.4em;
+}
+
+.markdown-content h2 {
+  font-size: 1.2em;
+}
+
+.markdown-content h3 {
+  font-size: 1.1em;
+}
+
+.markdown-content blockquote {
+  border-left: 3px solid var(--vscode-textBlockQuote-border, #666);
+  margin: 0.5em 0;
+  padding-left: 1em;
+  opacity: 0.8;
+}
+
+.markdown-content a {
+  color: var(--vscode-textLink-foreground, #3794ff);
+}
+
+.markdown-content a:hover {
+  text-decoration: underline;
+}

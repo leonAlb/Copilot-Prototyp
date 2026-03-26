@@ -1,0 +1,224 @@
+{
+  "name": "lecturepilot",
+  "displayName": "lecturepilot",
+  "description": "",
+  "version": "0.0.1",
+  "publisher": "leonAlb",
+  "engines": {
+    "vscode": "^1.105.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:markdown"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "lecturepilot-sidebar",
+          "title": "Lecture Pilot",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "lecturepilot-sidebar": [
+        {
+          "type": "webview",
+          "id": "lecturepilot.main",
+          "name": "Ask Lecture Pilot",
+          "icon": "media/icon.svg",
+          "contextualTitle": "Ask Lecture Pilot"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "lecturepilot.setLanguageForLLM",
+        "title": "Set Language for LLM",
+        "category": "Lecture Pilot"
+      },
+      {
+        "command": "lecturepilot.setModelForLLM",
+        "title": "Set Model for LLM",
+        "category": "Lecture Pilot"
+      },
+      {
+        "command": "lecturepilot.setThinkingLevelForLLM",
+        "title": "Set Thinking Level for LLM",
+        "category": "Lecture Pilot"
+      },
+      {
+        "command": "lecturepilot.setApiKey",
+        "title": "Set API Key for Current Provider",
+        "category": "Lecture Pilot"
+      },
+      {
+        "command": "lecturepilot.clearApiKey",
+        "title": "Clear API Key for Current Provider",
+        "category": "Lecture Pilot"
+      },
+      {
+        "command": "lecturepilot.initializeLecture",
+        "title": "Initialize Lecture",
+        "category": "Lecture Pilot"
+      },
+      {
+        "command": "lecturepilot.brainstormLiterature",
+        "title": "Brainstorm New Lecture",
+        "category": "Lecture Pilot"
+      },
+      {
+        "command": "lecturepilot.generateContentFromtTitles",
+        "title": "Generate Content From Titles",
+        "category": "Lecture Pilot"
+      },
+      {
+        "command": "lecturepilot.generateTeleprompterFromSlides",
+        "title": "Generate Teleprompter From Slides",
+        "category": "Lecture Pilot"
+      },
+      {
+        "command": "lecturepilot.generateQuizQuestions",
+        "title": "Generate Quiz Questions",
+        "category": "Lecture Pilot"
+      },
+      {
+        "command": "lecturepilot.toggleComplexityWatcher",
+        "title": "Toggle Complexity Watcher",
+        "category": "Lecture Pilot"
+      },
+      {
+        "command": "lecturepilot.runComplexityWatcher",
+        "title": "Start Complexity Analysis",
+        "category": "Lecture Pilot"
+      },
+      {
+        "command": "lecturepilot.toggleFormatWatcher",
+        "title": "Toggle Format Watcher",
+        "category": "Lecture Pilot"
+      },
+      {
+        "command": "lecturepilot.runFormatWatcher",
+        "title": "Start Format Analysis",
+        "category": "Lecture Pilot"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Lecture Pilot",
+      "properties": {
+        "lecturepilot.language": {
+          "type": "string",
+          "default": "en",
+          "enum": [
+            "en",
+            "de"
+          ],
+          "enumDescriptions": [
+            "English",
+            "German (Deutsch)"
+          ],
+          "description": "Language for LLM responses."
+        },
+        "lecturepilot.model": {
+          "type": "string",
+          "default": "gemini-2.5-flash-lite",
+          "description": "Model for LLM responses."
+        },
+        "lecturepilot.thinking": {
+          "type": "string",
+          "default": "low",
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "enumDescriptions": [
+            "Low - Faster responses",
+            "Medium - Balanced",
+            "High - Deep reasoning"
+          ],
+          "description": "Thinking level for LLM responses."
+        },
+        "lecturepilot.complexityChangesUntilAnalysis": {
+          "type": "number",
+          "default": 200,
+          "description": "Number of character changes before triggering complexity analysis."
+        },
+        "lecturepilot.complexityMinAnalysisIntervalSeconds": {
+          "type": "number",
+          "default": 10,
+          "description": "Minimum interval (in seconds) between complexity analyses."
+        },
+        "lecturepilot.complexityAnalysisGenerationAttempts": {
+          "type": "number",
+          "default": 3,
+          "description": "Number of attempts for complexity analysis generation."
+        },
+        "lecturepilot.maxNumberOfCharsInLine": {
+          "type": "number",
+          "default": 80,
+          "description": "Maximum number of characters per line in formatting rules."
+        },
+        "lecturepilot.formatChangesUntilAnalysis": {
+          "type": "number",
+          "default": 200,
+          "description": "Number of character changes before triggering format analysis."
+        },
+        "lecturepilot.formatMinAnalysisIntervalSeconds": {
+          "type": "number",
+          "default": 10,
+          "description": "Minimum interval (in seconds) between format analyses."
+        },
+        "lecturepilot.formatAnalysisGenerationAttempts": {
+          "type": "number",
+          "default": 3,
+          "description": "Number of attempts for format analysis generation."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test",
+    "build:webview": "cd webview-ui && npm run build",
+    "watch:webview": "cd webview-ui && npm run watch",
+    "watch:all": "concurrently \"npm run watch\" \"npm run watch:webview\"",
+    "build:all": "npm run build:webview && npm run compile"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@types/vscode": "^1.105.0",
+    "@typescript-eslint/eslint-plugin": "^8.45.0",
+    "@typescript-eslint/parser": "^8.45.0",
+    "@vscode/test-cli": "^0.0.11",
+    "@vscode/test-electron": "^2.5.2",
+    "concurrently": "^9.2.1",
+    "eslint": "^9.36.0",
+    "ts-loader": "^9.5.4",
+    "typescript": "^5.9.3",
+    "webpack": "^5.102.0",
+    "webpack-cli": "^6.0.1"
+  },
+  "dependencies": {
+    "@google/genai": "^1.29.0",
+    "axios": "^1.13.1",
+    "bufferutil": "^4.0.9",
+    "openai": "^6.9.1",
+    "ts-node": "^10.9.2",
+    "utf-8-validate": "^6.0.5",
+    "zod": "^4.1.13"
+  }
+}
