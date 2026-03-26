@@ -21,7 +21,7 @@ A built-in chat sidebar lets you interact with the LLM directly. The AI agent ca
 ### Background Watchers
 
 - **Complexity Watcher** — Monitors your lecture content as you edit and flags sections that may be too complex for students.
-- **Format Watcher** — Checks formatting rules (e.g., line length) and raises diagnostics in the Problems panel.
+- **Format Watcher** — Checks formatting rules (line length).
 
 Both watchers are configurable and trigger automatically after a set number of character changes.
 
@@ -66,8 +66,8 @@ Speaker notes for this slide...
 ## Getting Started
 
 1. Install the extension (via `.vsix` or from source).
-2. Open the Command Palette (`Ctrl+Shift+P`) and run **Lecture Pilot: Set API Key for Current Provider**.
-3. Open or create a `.md` file.
+2. Open or create a `.md` file.
+3. Open the Command Palette (`Ctrl+Shift+P`) and run **Lecture Pilot: Set API Key for Current Provider**.
 4. Use the **Lecture Pilot** sidebar or run milestone commands from the Command Palette.
 
 ## Commands
@@ -90,23 +90,6 @@ All commands are available via `Ctrl+Shift+P` under the **Lecture Pilot** catego
 | `Start Complexity Analysis` | Run complexity analysis manually |
 | `Toggle Format Watcher` | Enable/disable format checking |
 | `Start Format Analysis` | Run format analysis manually |
-
-## Extension Settings
-
-Configure via `File > Preferences > Settings` and search for **Lecture Pilot**:
-
-| Setting | Default | Description |
-|---|---|---|
-| `lecturepilot.language` | `en` | Language for LLM responses (`en` or `de`) |
-| `lecturepilot.model` | `gemini-2.5-flash-lite` | LLM model to use |
-| `lecturepilot.thinking` | `low` | Thinking level: `low`, `medium`, or `high` |
-| `lecturepilot.complexityChangesUntilAnalysis` | `200` | Character changes before complexity analysis triggers |
-| `lecturepilot.complexityMinAnalysisIntervalSeconds` | `10` | Minimum seconds between complexity analyses |
-| `lecturepilot.complexityAnalysisGenerationAttempts` | `3` | Retry attempts for complexity analysis |
-| `lecturepilot.maxNumberOfCharsInLine` | `80` | Max characters per line for format checking |
-| `lecturepilot.formatChangesUntilAnalysis` | `200` | Character changes before format analysis triggers |
-| `lecturepilot.formatMinAnalysisIntervalSeconds` | `10` | Minimum seconds between format analyses |
-| `lecturepilot.formatAnalysisGenerationAttempts` | `3` | Retry attempts for format analysis |
 
 ## Building from Source
 
