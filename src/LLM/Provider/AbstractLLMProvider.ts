@@ -75,6 +75,11 @@ export abstract class AbstractLLMProvider {
     // Abstract method to initialize and return the AI client instance
     protected abstract getAIClient(): Promise<any>;
 
+    // Invalidate the cached AI client so it is re-created with the current API key on next use
+    public clearAIClient(): void {
+        this.aiClient = null;
+    }
+
     // Retrieve the API key for this provider from the APIKeyManager
     protected async getApiKey(): Promise<string | undefined> {
         try {

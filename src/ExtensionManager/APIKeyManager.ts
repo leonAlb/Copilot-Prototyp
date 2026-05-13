@@ -70,6 +70,7 @@ export class APIKeyManager implements vscode.Disposable {
 
         if (apiKey) {
             await this.context.secrets.store(this.secretKeyFor(providerName), apiKey);
+            provider.clearAIClient();
             vscode.window.showInformationMessage(`✓ ${providerName} API Key saved!`);
         } else {
             vscode.window.showWarningMessage(`✗ ${providerName} API Key not set.`);
@@ -87,6 +88,7 @@ export class APIKeyManager implements vscode.Disposable {
         const providerName = provider.getProviderName();
 
         await this.context.secrets.delete(this.secretKeyFor(providerName));
+        provider.clearAIClient();
         vscode.window.showInformationMessage(`✓ ${providerName} API Key cleared!`);
     }
 
